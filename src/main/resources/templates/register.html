@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #main {
+            text-align:center;
+            margin-top:200px;
+        }
+        .cell{
+
+            margin-top: 50px;
+
+        }
+        input{
+            width:300px;
+            height:30px;
+            margin-left:20px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="main">
+    <form action="/register" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="cell">
+                <label for="username">username</label><input type="text" name="username" id="username">
+            </div>
+            <div class="cell">
+                <label for="password">password</label><input type="password" name="password" id="password">
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell">
+                <label for="confirmPassword">password</label><input type="password" name="confirmPassword"
+                                                                    id="confirmPassword">
+            </div>
+            <div class="cell">
+                <label for="avatar">avatar</label><input type="file" name="avatarImage" id="avatar">
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    $(function () {
+        $("button").click(function (e) {
+            //阻止单击默认行为
+            e.preventDefault();
+
+            let password=$("#password").val();
+            let confirmPassword=$("#confirmPassword").val();
+            if (password!==confirmPassword){
+                alert("两次密码不一致");
+                return;
+
+                //提交表单
+
+            }
+            $("form").submit();
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--        日志-->
+        <setting name="logImpl" value="log4j2"/>
+        <!-- 提示：一级缓存默认就是开启的，而且无法关闭 一级缓存指的是同一个session之间的数据共享-->
+        <!-- 启用缓存（二级）（总开关） 二级缓存是指不同session之前的数据共享-->
+        <setting name="cacheEnabled" value="true"/>
+
+        <!--驼峰式命名-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!--别名，此包下所有类都默认别名，不区分大小写-->
+    <typeAliases>
+        <package name="com.cheer.bbs.model"/>
+    </typeAliases>
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+        </plugin>
+    </plugins>
+</configuration>

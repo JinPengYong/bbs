@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        h2,form{
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 200px;
+        }
+        form {
+            margin-top: 50px;
+        }
+        div + div {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<h2>贴吧登录</h2>
+<div id="form">
+    <form action="login" method="post">
+        <div>
+            <label for="username">账户</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div>
+            <label for="password">密码</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div>
+            <button type="submit">登录</button>
+            <button type="submit" id="register">注册</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+    $(function () {
+       $("#register").click(function (e) {
+            location.href="register";
+            //你在事件后加一个return false;就行了,就能取消按钮默认的属性和行为了~
+           return false;
+
+       }) ;
+    });
+</script>
+</body>
+</html>

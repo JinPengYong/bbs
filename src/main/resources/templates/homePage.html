@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--suppress ThymeleafVariablesResolveInspection-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .user{
+            text-align: right;
+            margin-right: 500px;
+            margin-top: 20px;
+        }
+        table {
+            margin-left: 400px;
+            margin-top: 0px;
+            vertical-align: center;
+        }
+        img {
+            height: 80px;
+            width: 80px;
+        }
+        .avatar {
+            text-align: right;
+            margin-right: 520px;
+        }
+        .post img{
+            height: 55px;
+            width: 55px;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <div class="avatar">
+            <img th:src="@{/avatar/}+${session.user.avatar}">
+        </div>
+        <div  class="user">
+            <a href="/sendPost">发贴</a>
+            <a href="/personalPage">个人中心</a>
+        </div>
+
+    </div>
+
+
+<table class="post">
+<tr th:each="postVo:${postVoList}">
+    <td>
+        <img th:src="@{/avatar/}+${postVo.avatar}">
+    </td>
+    <td>
+            <div>
+                <a th:href="@{/blogPage}+'?postId='+${postVo.postId}">
+                    <h4 th:text="${postVo.theme}"></h4>
+                </a>
+            </div>
+            <div>
+                <span th:text="'上次回复'+${postVo.replyTime}+'来自于'"></span>
+                <a th:text="${postVo.username}" th:href="@{/userHomePage}+'?replyId='+${postVo.replyId}"></a>
+            </div>
+    </td>
+</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--suppress ThymeleafVariablesResolveInspection-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .reply {
+            position:fixed;
+            bottom: 0;
+            margin-left: 500px;
+        }
+        textarea {
+            height: 20em;
+            width: 50em;
+        }
+        .main img {
+            height: 70px;
+            width: 70px;
+        }
+        .cell img {
+            height: 60px;
+            width: 60px;
+        }
+        table h4,h3 {
+            display:inline;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a href="/homePage">首页</a>
+</div>
+<!--
+<div>
+    <h3 th:text="${post.theme}"></h3>
+</div>
+<div>
+    <p th:text="${post.content}"></p>
+</div>
+<div th:each="replyVo:${replyList}">
+    <img th:src="@{/avatar/}+${replyVo.avatar}">
+    <div id="cont">
+        <span th:text="${replyVo.time}"></span>
+        <span th:text="${replyVo.username}"></span>
+        <span th:text="${replyVo.num}+'楼'"></span>
+        <div>
+            <h4 th:text="${replyVo.content}"></h4>
+        </div>
+    </div>
+
+</div>
+-->
+
+<table>
+    <tr class="main">
+        <td><img th:src="@{/avatar/}+${user.avatar}"></td>
+        <td>
+            <a th:href="@{/userHomePage}+'?replyId='+${user.userId}" th:text="${user.username}"></a>
+            <h3 th:text="${post.theme}"></h3>
+            <p th:text="${post.content}"></p>
+        </td>
+    </tr>
+    <tr th:each="replyVo:${replyList}" th:class="cell">
+        <td><img th:src="@{/avatar/}+${replyVo.avatar}"></td>
+        <td>
+            <div>
+                <p th:text="${replyVo.time}+' '+${replyVo.num}+'楼'"></p>
+            </div>
+            <div>
+                <a th:href="@{/userHomePage}+'?replyId='+${replyVo.userId}" th:text="${replyVo.username}"></a>
+                <h4 th:text="'回复：'+${replyVo.content}"></h4>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div class="reply">
+    <!--<form action="/replay" method="post">-->
+    <form th:action="@{/reply}" method="post">
+        <div>
+            <label for="content">内容</label>
+            <textarea name="content" id="content"></textarea>
+        </div>
+        <div class="button">
+            <button type="submit">回复</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

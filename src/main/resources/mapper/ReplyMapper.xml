@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cheer.bbs.dao.ReplyMapper">
+    <insert id="insert">
+        insert into reply value(default,#{userId},#{content},#{time},#{postId},#{num})
+    </insert>
+
+    <select id="getList" resultType="com.cheer.bbs.model.ReplyVo">
+        SELECT * FROM
+        (SELECT t2.*,t3.avatar,t3.username from reply t2 LEFT JOIN user t3 on t2.user_id=t3.user_id) t2
+        where t2.post_id=#{postId}
+
+    </select>
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from reply where post_id=#{postId}
+    </select>
+
+    <select id="getReplyCount" resultType="java.lang.Integer">
+        select count(*) from reply where user_id=#{userId}
+    </select>
+
+    <select id="getUserReplyList" resultType="com.cheer.bbs.model.Reply">
+        select distinct post_id from reply where user_id=#{userId}
+    </select>
+
+    <select id="getUserReplyList1" resultType="com.cheer.bbs.model.Reply">
+        select * from reply where user_id=#{userId} and post_id=#{postId}
+    </select>
+</mapper>

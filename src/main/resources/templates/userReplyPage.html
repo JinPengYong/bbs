@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+<h2 th:text="'贴子主题'+${post.theme}"></h2>
+    <p th:text="'贴子内容'+${post.content}"></p>
+    <div th:each="reply:${list}">
+        <h3 th:text="'我的回复'+${reply.content}"></h3>
+        <div>
+            <span th:text="'时间'+${reply.time}"></span>
+            <span th:text="${reply.num}+'楼'"></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
